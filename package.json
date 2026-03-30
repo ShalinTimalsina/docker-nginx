@@ -1,12 +1,12 @@
 {
-    "name": "nginx-crash-course",
+    "name": "docker-nginx",
     "version": "1.0.0",
     "description": "A Node.js application serving a static HTML file, used for load balancing with NGINX.",
     "main": "server.js",
     "scripts": {
       "start": "node server.js"
     },
-    "author": "Your Name",
+    "author": "Shalin Timalsina",
     "license": "MIT",
     "dependencies": {
       "express": "^4.17.1",
