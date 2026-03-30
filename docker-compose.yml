@@ -1,7 +1,6 @@
 services:
   node-app:
     build: .
-    container_name: node-app
     expose:
       - "3000"
     restart: always

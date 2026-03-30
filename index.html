@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, proxy-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
   <title>Shalin | Docker & Nginx Journey</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
     body {
       background: linear-gradient(135deg, #0f172a, #1e293b);
-      color: #e2e8f0;
+      color: #e5e7eb;
       line-height: 1.6;
     }
 
@@ -23,7 +27,6 @@
       padding: 40px 20px;
       text-align: center;
       background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
@@ -39,41 +42,33 @@
     }
 
     .container {
-      max-width: 1100px;
-      margin: 40px auto;
+      max-width: 1000px;
+      margin: 30px auto;
       padding: 20px;
     }
 
     .card {
-      background: rgba(255,255,255,0.05);
-      border-radius: 16px;
-      padding: 25px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 14px;
+      padding: 24px;
       margin-bottom: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.45);
     }
 
     h2 {
-      margin-bottom: 15px;
       color: #38bdf8;
+      margin-bottom: 12px;
     }
 
-    .gif {
-      width: 100%;
-      border-radius: 12px;
-      margin-top: 15px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      color: #94a3b8;
+    .backend-box {
+      margin-top: 10px;
+      padding: 16px;
+      background: rgba(0,0,0,0.50);
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.12);
+      font-family: monospace;
+      font-size: 0.95rem;
+      line-height: 1.8;
     }
 
     .tag {
@@ -81,26 +76,42 @@
       background: #1e40af;
       padding: 6px 12px;
       border-radius: 999px;
-      margin: 5px;
+      margin: 6px 6px 0 0;
       font-size: 0.85rem;
     }
 
+    footer {
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #94a3b8;
+    }
   </style>
 </head>
-<body>
 
+<body>
   <header>
-    <h1>🚀 Hello, I'm Shalin</h1>
-    <p>Learning Docker & Nginx | Building Production-Ready Skills</p>
+    <h1>Hello, I'm Shalin</h1>
+    <p>Docker · Nginx · Load Balancing · Production Systems</p>
   </header>
 
   <div class="container">
 
+    <!-- ✅ BACKEND INFO ALWAYS AT TOP -->
     <div class="card">
-      <h2>📦 My Docker Journey</h2>
+      <h2>Live Backend Information</h2>
+      <p>Refresh the page to observe real-time load balancing.</p>
+
+      <div id="backend-info" class="backend-box">
+        Fetching backend data...
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Docker Journey</h2>
       <p>
-        I'm currently diving deep into containerization using Docker. Understanding how to package applications,
-        manage environments, and deploy scalable systems is my focus.
+        Building containerized systems with reproducible environments,
+        clean networking, and horizontal scaling.
       </p>
       <div>
         <span class="tag">Containers</span>
@@ -108,38 +119,49 @@
         <span class="tag">Volumes</span>
         <span class="tag">Networking</span>
       </div>
-      <img class="gif" src="https://media.giphy.com/media/kH1DBkPNyZPOk0BxrM/giphy.gif" alt="Docker GIF">
     </div>
 
     <div class="card">
-      <h2>🌐 Nginx in Production</h2>
+      <h2>Nginx in Production</h2>
       <p>
-        Learning how to use Nginx as a reverse proxy, web server, and load balancer.
-        My goal is to deploy production-grade applications with performance and security in mind.
+        Using Nginx as a reverse proxy and load balancer to securely
+        expose backend services while keeping them private.
       </p>
       <div>
         <span class="tag">Reverse Proxy</span>
         <span class="tag">Load Balancing</span>
         <span class="tag">HTTPS</span>
-        <span class="tag">Caching</span>
       </div>
-      <img class="gif" src="https://media.giphy.com/media/LmNwrBhejkK9EFP504/giphy.gif" alt="Nginx GIF">
-    </div>
-
-    <div class="card">
-      <h2>🛠️ My Goal</h2>
-      <p>
-        To become highly skilled in DevOps, Cloud, and Security. I'm actively building projects,
-        experimenting with AWS, and learning how real-world systems are designed and deployed.
-      </p>
-      <img class="gif" src="https://media.giphy.com/media/f3iwJFOVOwuy7K6FFw/giphy.gif" alt="Coding GIF">
     </div>
 
   </div>
 
   <footer>
-    <p>© 2026 Shalin | Built with ❤️ while learning Docker & Nginx</p>
+    <p>© 2026 Shalin | Built to learn real DevOps</p>
   </footer>
 
+  <script>
+    async function fetchBackendInfo() {
+      try {
+        const response = await fetch(`/info?ts=${Date.now()}`, {
+          cache: "no-store"
+        });
+
+        const data = await response.json();
+
+        document.getElementById("backend-info").innerHTML = `
+          Application Name : ${data.appName}<br>
+          Docker Container : ${data.containerName}<br>
+          Process ID (PID) : ${data.pid}<br>
+          Served At        : ${new Date(data.timestamp).toLocaleString()}
+        `;
+      } catch (err) {
+        document.getElementById("backend-info").innerText =
+          "Failed to load backend information.";
+      }
+    }
+
+    fetchBackendInfo();
+  </script>
 </body>
 </html>
