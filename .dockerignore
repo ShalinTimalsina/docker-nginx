@@ -1,0 +1,41 @@
+# --------------------
+# Node.js dependencies
+# --------------------
+node_modules
+npm-debug.log
+
+# --------------------
+# Git & VCS
+# --------------------
+.git
+.gitignore
+
+# --------------------
+# Docker files not needed in image
+# --------------------
+docker-compose.yml
+.dockerignore
+
+# --------------------
+# Nginx config (not needed in Node image)
+# --------------------
+nginx/
+
+# --------------------
+# Certbot / SSL (must NEVER go into image)
+# --------------------
+certbot
+*.pem
+
+# --------------------
+# Environment / secrets
+# --------------------
+.env
+
+# --------------------
+# OS / editor junk
+# --------------------
+.DS_Store
+.vscode
+.idea
+``
