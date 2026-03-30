@@ -1,4 +1,4 @@
-### This is a project accompanying Nginx Crash Course
+### This is a project is a nginx-docker practice project
 
 ### Commands used in the tutorial
 
