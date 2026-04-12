@@ -10,14 +10,15 @@ const appName = process.env.APP_NAME || "Docker-Nginx-App";
 const containerName = os.hostname(); // ✅ canonical Docker container identity
 
 // Serve static files
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Homepage
 app.get("/", (req, res) => {
   console.log(
     `[${new Date().toISOString()}] Served by ${containerName} | PID ${process.pid}`
   );
-  res.sendFile(path.join(__dirname, "index.html"));
+  // ✅ UPDATED: Now points to index.html inside the "public" folder
+  res.sendFile(path.join(__dirname, "public", "index.html")); 
 });
 
 // ✅ Live backend info (NO caching allowed)
