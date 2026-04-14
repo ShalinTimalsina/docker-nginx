@@ -1,16 +1,19 @@
 {
-    "name": "docker-nginx",
-    "version": "1.0.0",
-    "description": "A Node.js application serving a static HTML file, used for load balancing with NGINX.",
-    "main": "server.js",
-    "scripts": {
-      "start": "node server.js"
-    },
-    "author": "Shalin Timalsina",
-    "license": "MIT",
-    "dependencies": {
-      "express": "^4.17.1",
-      "path": "^0.12.7"
-    }
+  "name": "docker-nginx",
+  "version": "1.0.0",
+  "description": "A Node.js application serving a static HTML file, used for load balancing with NGINX.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "jest"
+  },
+  "author": "Shalin Timalsina",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.1.3"
   }
-  
+}
