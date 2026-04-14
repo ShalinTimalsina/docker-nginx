@@ -19,10 +19,10 @@ jobs:
     # Codes are going to be pulled inside the runner
     - name: Checkout Repo in the runner  
     # Uses the pre-defined actions from the marketplace
-      uses: actions/checkout@v4 
+      uses: actions/checkout@v6.0.2
 
     - name: Setup Nodejs 
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v6
       with:
         node-version: 24
 
