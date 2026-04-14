@@ -15,13 +15,17 @@ jobs:
     steps:  # Now the steps are defined inside 
     - name: Checkout Repo in the runner  # Codes are going to be pulled inside the runner
       uses: actions/checkout@v6.0.2 # Us es the pre-defined actions from the marketplace
+
+    - name: Setup Nodejs 
       uses: actions/setup-node@v6
       with:
         node-version: 24
-    - name: Installing all the dependencies and running the server.
-      run: | 
-        npm install 
-        node server.js
+
+    - name: Install Dependencies
+      run: npm install 
+         
+    - name: Run tests
+      run: npm test 
           
 
   # job-2:
