@@ -24,12 +24,17 @@ jobs:
     - name: Install Dependencies
       run: npm install 
          
-    - name: Run the express server 
+    - name: Run the express server  
       run:  | 
-         node server.js 
+         node server.js  
+         SERVER_PID=$!
          sleep 5 
+
     - name : Check the health status
-      run: curl http://localhost:3000/health
+      run: |
+          curl http://localhost:3000/health
+          kill $SERVER_PID
+
 
   # job-2:
   #   runs-on: ubuntu-latest
