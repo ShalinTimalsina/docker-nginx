@@ -55,16 +55,11 @@ jobs:
           severity: HIGH,CRITICAL
           exit-code: 1
 
-      - name: Install Gitleaks (binary, fast)
-        run: |
-          curl -sSL https://github.com/gitleaks/gitleaks/releases/latest/download/gitleaks-linux-amd64 \
-            -o gitleaks && chmod +x gitleaks && sudo mv gitleaks /usr/local/bin
+      - name: Install Gitleaks
+        run: sudo apt install gitleaks -y 
 
-      - name: Run Gitleaks scan
-        run: |
-          gitleaks detect \
-            --source . \
-            --report-path gitleaks-report.json \
-            --report-format json
+      - name: Gitleaks Scan
+        run: gitleaks detech source . -r gitleaks-report.json -f json
+        
 
 
