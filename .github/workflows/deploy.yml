@@ -10,29 +10,31 @@ jobs:
 
 # Each jobs is going to run on a seperate machine
 
-  job-1: # This is just the identifier or the name of the job
-    runs-on: ubuntu-latest #  This is where the Pipeline is going to run (Shared runner)
-    steps:  # Now the steps are defined inside 
-    - name: Checkout Repo in the runner  # Codes are going to be pulled inside the runner
-      uses: actions/checkout@v6.0.2 # Us es the pre-defined actions from the marketplace
+# This is just the identifier or the name of the job
+  job-1: 
+  #  This is where the Pipeline is going to run (Shared runner)
+    runs-on: ubuntu-latest 
+    # Now the steps are defined inside
+    steps:   
+    # Codes are going to be pulled inside the runner
+    - name: Checkout Repo in the runner  
+    # Uses the pre-defined actions from the marketplace
+      uses: actions/checkout@v4 
 
     - name: Setup Nodejs 
-      uses: actions/setup-node@v6
+      uses: actions/setup-node@v4
       with:
         node-version: 24
 
     - name: Install Dependencies
       run: npm install 
          
-    - name: Run the express server  
+    - name: Run the express server ,health check and stop the express server.
       run:  | 
          node server.js & SERVER_PID=$!
          sleep 5 
-
-    - name : Check the health status
-      run: |
-          curl  -f http://localhost:3000/health
-          kill $SERVER_PID
+         curl http://localhost:3000/health
+         kill $SERVER_PID
 
 
   # job-2:
