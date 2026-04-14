@@ -39,6 +39,7 @@ jobs:
   
   Security: 
     
+    needs: Compile
     runs-on: ubuntu-latest
 
     steps:
