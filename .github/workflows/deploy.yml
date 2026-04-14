@@ -1,0 +1,33 @@
+name: CI CD pipeline 
+
+
+# This is the events that is going to trigger this whole workflow.
+on: 
+  push:
+    branches: [ 'main']
+  
+jobs:
+
+# Each jobs is going to run on a seperate machine
+
+  job-1: # This is just the identifier or the name of the job
+    runs-on: ubuntu-latest #  This is where the Pipeline is going to run (Shared runner)
+    steps:  # Now the steps are defined inside 
+    - name: Checkout Repo in the runner  # Codes are going to be pulled inside the runner
+      uses: actions/checkout@v6.0.2 # Us es the pre-defined actions from the marketplace
+      uses: actions/setup-node@v6
+      with:
+        node-version: 24
+    - name: Installing all the dependencies and running the server.
+      run: | 
+        npm install 
+        node server.js
+          
+
+  # job-2:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name:      
+
+
+      
