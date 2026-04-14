@@ -55,11 +55,10 @@ jobs:
           severity: HIGH,CRITICAL
           exit-code: 1
 
-      - name: Install Gitleaks
-        run: sudo apt install gitleaks -y 
-
-      - name: Gitleaks Scan
-        run: gitleaks detech source . -r gitleaks-report.json -f json
+      - name: Gitleaks scan
+        uses: gitleaks/gitleaks-action@v2
+        with:
+          args: detect --source . --report-path gitleaks-report.json --report-format json
         
 
 
