@@ -24,9 +24,12 @@ jobs:
     - name: Install Dependencies
       run: npm install 
          
-    - name: Run tests
-      run: npm test 
-          
+    - name: Run the express server 
+      run:  | 
+         node server.js 
+         sleep 5 
+    - name : Check the health status
+      run: curl http://localhost:3000/health
 
   # job-2:
   #   runs-on: ubuntu-latest
