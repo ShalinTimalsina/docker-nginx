@@ -18,7 +18,8 @@ WORKDIR /app
 COPY --from=builder /app/node_modules ./node_modules
 
 # Copy application files
-COPY --chown=appuser:appgroup server.js index.html ./
+COPY --chown=appuser:appgroup server.js ./
+COPY --chown=appuser:appgroup public ./public
 
 USER appuser
 
