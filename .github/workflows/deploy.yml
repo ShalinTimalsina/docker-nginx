@@ -43,7 +43,7 @@ jobs:
 
     steps:
       - name: Checkout the Code 
-        uses: action/checkout@v6.0.2
+        uses: actions/checkout@v6.0.2
 
       - name: Trivy Installation 
         run : |
