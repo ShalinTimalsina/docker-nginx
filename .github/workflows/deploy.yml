@@ -46,36 +46,15 @@ jobs:
       - name: Checkout the Code 
         uses: actions/checkout@v6.0.2
 
-      - name: Trivy Installation 
-        run : |
-            echo "Waiting for apt lock to be released..."
-            while sudo fuser /var/lib/dpkg/lock-frontend >/dev/null 2>&1; do
-              echo "apt is locked, waiting..."
-              sleep 5
-            done
-        
-            sudo apt-get update -y
-            sudo apt-get install -y wget gnupg
-        
-            wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key \
-              | gpg --dearmor \
-              | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
-        
-            echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main" \
-              | sudo tee /etc/apt/sources.list.d/trivy.list
-        
-            sudo apt-get update -y
-        
-            echo "Waiting for apt lock again before installing trivy..."
-            while sudo fuser /var/lib/dpkg/lock-frontend >/dev/null 2>&1; do
-              sleep 5
-            done
-        
-            sudo apt-get install -y trivy
-                  
-      - name: Trivy FS scan
-        run : |
-          trivy fs --format table -o fs-report.json . 
+      - name: Aqua Security Trivy
+        uses: aquasecurity/trivy-action@v0.35.0
+        with: 
+            scan-type: fs
+            scan-ref: .
+            format: json
+            output: fs-report.json
+            severity: HIGH,CRITICAL
+            exit-code: 1
 
       - name: Gitleaks Installation
         run: | 
