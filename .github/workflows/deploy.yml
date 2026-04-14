@@ -46,22 +46,25 @@ jobs:
       - name: Checkout the Code 
         uses: actions/checkout@v6.0.2
 
-      - name: Trivy Installation 
-        run : |
-          sudo apt-get install wget gnupg -y 
-          wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
-          echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
-          sudo apt-get update -y
-          sudo apt-get install trivy -y 
+     
+      - name: Trivy filesystem scan
+        uses: aquasecurity/trivy-action@v0.35.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          severity: HIGH,CRITICAL
+          exit-code: 1
 
-      - name: Trivy FS scan
-        run : |
-          trivy fs --format table -o fs-report.json . 
+      - name: Install Gitleaks (binary, fast)
+        run: |
+          curl -sSL https://github.com/gitleaks/gitleaks/releases/latest/download/gitleaks-linux-amd64 \
+            -o gitleaks && chmod +x gitleaks && sudo mv gitleaks /usr/local/bin
 
-      - name: Gitleaks Installation
-        run: | 
-          sudo apt install gitleaks -y 
+      - name: Run Gitleaks scan
+        run: |
+          gitleaks detect \
+            --source . \
+            --report-path gitleaks-report.json \
+            --report-format json
 
-      - name: Gitleaks Scann
-        run: gitleaks detect source  . -r gitleaks-report.json -f json 
 
