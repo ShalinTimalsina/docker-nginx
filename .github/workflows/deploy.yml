@@ -80,6 +80,8 @@ jobs:
 
       - name: Install Dependencies
         run: npm install 
+        env:
+          NODE_ENV: development
 
       - name: Unit Test cases
-        run: npm test 
+        run: npm test   
