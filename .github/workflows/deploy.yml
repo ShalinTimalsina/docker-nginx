@@ -36,11 +36,31 @@ jobs:
          curl http://localhost:3000/health
          kill $SERVER_PID
 
+  
+  Security: 
+    
+    runs-on: ubuntu-latest
 
-  # job-2:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name:      
+    steps:
+      - name: Checkout the Code 
+        uses: action/checkout@v6.0.2
 
+      - name: Trivy Installation 
+        run : |
+          sudo apt-get install wget gnupg -y 
+          wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
+          echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
+          sudo apt-get update -y
+          sudo apt-get install trivy -y 
 
-      
+      - name: Trivy FS scan
+        run : |
+          trivy fs --format table -o fs-report.json . 
+
+      - name: Gitleaks Installation
+        run: | 
+          sudo apt install gitleaks -y 
+
+      - name: Gitleaks Scann
+        run: gitleaks detect source  . -r gitleaks-report.json -f json 
+
