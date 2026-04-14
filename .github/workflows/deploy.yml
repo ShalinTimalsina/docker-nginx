@@ -26,13 +26,12 @@ jobs:
          
     - name: Run the express server  
       run:  | 
-         node server.js  
-         SERVER_PID=$!
+         node server.js & SERVER_PID=$!
          sleep 5 
 
     - name : Check the health status
       run: |
-          curl http://localhost:3000/health
+          curl  -f http://localhost:3000/health
           kill $SERVER_PID
 
 
