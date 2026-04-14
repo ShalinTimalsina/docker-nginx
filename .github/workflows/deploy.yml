@@ -65,6 +65,13 @@ jobs:
             --report-format json
             --exit-code 1
                   
-                
+  Tests: 
+    needs: Security
+    runs-on: self-hosted
+    steps:
+      - name:  Checkout the Code 
+        uses: actions/checkout@v6.0.2
 
 
+      - name: Unit Test cases
+        run: npm test 
