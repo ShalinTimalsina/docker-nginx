@@ -1,6 +1,7 @@
 services:
   node-app:
-    build: .
+    image: shalintim/node-app:latest
+    container_name: node-app-container
     expose:
       - "3000"
     restart: always
