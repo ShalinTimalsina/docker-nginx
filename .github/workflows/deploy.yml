@@ -171,7 +171,7 @@ jobs:
           username: ubuntu
           key: ${{secrets.SSH_PRIVATE_KEY}}
           script: |
-            cd /home/ubuntu/docker-nginx
+            cd ${{ vars.FILE_PATH }}
             
             git fetch origin
             git reset --hard origin/main
