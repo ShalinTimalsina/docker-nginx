@@ -85,3 +85,39 @@ jobs:
 
       - name: Unit Test cases
         run: npm test   
+
+  Sonar-Scan:
+    needs: Tests
+    runs-on: self-hosted
+
+    steps:
+
+      - name:  Checkout the Code 
+        uses: actions/checkout@v6.0.2
+
+      - name: Setup Nodejs 
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Install Dependencies
+        run: npm install 
+        env:
+          NODE_ENV: development
+
+      - name: Unit Test cases
+        run: npm test   
+
+      
+      - name: Build Sonar Scan 
+        uses: actions/checkout@v6
+        with:
+          # Disabling shallow clones is recommended for improving the relevancy of reporting
+          fetch-depth: 0
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v7.1.0 
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{secrets.SONAR_HOST_URL}}
+
+          
