@@ -155,3 +155,26 @@ jobs:
         with:
           push: true
           tags: shalintim/node-app:latest
+  Deploy:
+    needs: Docker
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v6.0.2
+
+      
+      - name: Deploy Via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{secrets.SSH_HOST}}
+          username: ubuntu
+          key: ${{secrets.SSH_PRIVATE_KEY}}
+          script: |
+            cd /home/ubuntu/docker-nginx
+            
+            git fetch origin
+            git reset --hard origin/main
+
+            docker compose pull
+            docker compose up -d --remove-orphans
